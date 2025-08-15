@@ -17,17 +17,21 @@ const symbols = '!@#$%^&*()_+[]{}|;:,.<>?/`~';
 
 let password = "";
 let passwordLength = 10;
+setIndicator("#ccc");
 
 //styl circle grey
 handleSlider();
 function handleSlider() {
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+    inputSlider.style.backgroundSize = ((passwordLength - min) * 100) / (max - min) + "% 100%";
+
 }
 
 function setIndicator(color) {
     indicator.style.backgroundColor = color
-    //hw shadow
 }
 
 function getRndInteger(min, max) {
@@ -100,7 +104,7 @@ function handleCheckBoxChange() {
     });
     if (passwordLength < checkCount) {
         passwordLength = checkCount;
-            // inputSlider.value = checkCount;
+        // inputSlider.value = checkCount;
         handleSlider();
     }
 }
@@ -142,7 +146,6 @@ generateBtn.addEventListener('click', () => {
 
     if (passwordLength < checkCount) {
         passwordLength = checkCount;
-        // lengthDisplay.innerText = checkCount;
         handleSlider();
     }
 
@@ -174,6 +177,6 @@ generateBtn.addEventListener('click', () => {
 
     passwordDisplay.value = password;
 
-    // calcStrength();
+    calcStrength();
 
 });
